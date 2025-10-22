@@ -3,7 +3,7 @@ const NavbarModel = require("../models/navbarmodels");
 const getnavbarmodels = async (req, res) => {
   try {
     const navbar = await NavbarModel.findOne();
-    res.status(200).json(navbar || { logo: "", links: [{ name: "" }] });
+    res.status(200).json(navbar || {logo_white: "", logo_black: "", links: [{ name: "" }] });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -12,7 +12,6 @@ const getnavbarmodels = async (req, res) => {
 // Create or replace navbar
 const createnavbarmodels = async (req, res) => {
   try {
-    // Delete all existing navbars first
     await NavbarModel.deleteMany({});
     const newNavbar = await NavbarModel.create(req.body);
     res.status(201).json(newNavbar);
@@ -24,10 +23,10 @@ const createnavbarmodels = async (req, res) => {
 // Update existing navbar by ID
 const updatenavbarmodels = async (req, res) => {
   try {
-    const { logo, navlinks } = req.body; // use navlinks, not links
+    const { logo_white,logo_black, navlinks } = req.body; 
     const updatedNavbar = await NavbarModel.findByIdAndUpdate(
       req.params.id,
-      { logo, navlinks },
+      { logo_white,logo_black, navlinks },
       { new: true, runValidators: true }
     );
     res.status(200).json(updatedNavbar);
@@ -37,7 +36,6 @@ const updatenavbarmodels = async (req, res) => {
 };
 
 // Delete navbar (all)
-// navbarmodelsController.js
 const deletenavbarmodels = async (req, res) => {
   try {
     const deletedNavbar = await NavbarModel.findByIdAndDelete(req.params.id);

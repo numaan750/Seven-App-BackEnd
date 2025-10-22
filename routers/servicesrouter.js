@@ -1,5 +1,5 @@
 const express = require("express");
-const { getservicesmodels, createserviesmodels, updateserviesmodels, deleteserviesmodels } = require("../controllers/Servicesontroller")
+const { getservicesmodels, createserviesmodels, updateserviesmodels, deleteserviesmodels } = require("../controllers/servicesontroller")
 
 const router = express.Router();
 

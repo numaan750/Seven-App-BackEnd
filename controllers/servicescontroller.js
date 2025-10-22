@@ -1,10 +1,10 @@
-const ServiesModels = require("../models/servicesmodels");
+const serviesmodels = require("../models/servicesmodels");
 
 
 
 const getservicesmodels = async (req, res) => {
     try {
-        const servicesmodels = await ServiesModels.find();
+        const servicesmodels = await serviesmodels.find();
         res.status(200).json(servicesmodels);
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -13,7 +13,7 @@ const getservicesmodels = async (req, res) => {
 
 const createserviesmodels = async (req, res) => {
     try {
-        const newservices = await ServiesModels.create(req.body);
+        const newservices = await serviesmodels.create(req.body);
         res.status(201).json(newservices);
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -22,7 +22,7 @@ const createserviesmodels = async (req, res) => {
 
 const updateserviesmodels = async (req, res) =>{
     try {
-        const updatedServices = await ServiesModels.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true, runValidators: true });
+        const updatedServices = await serviesmodels.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true, runValidators: true });
         res.status(200).json(updatedServices);
     } catch (error) {
         res.status(500).json({error: error.message});
@@ -31,7 +31,7 @@ const updateserviesmodels = async (req, res) =>{
 
 const deleteserviesmodels = async (req, res) => {
     try {
-        const deletedServices = await ServiesModels.findOneAndDelete({ _id: req.params.id });
+        const deletedServices = await serviesmodels.findOneAndDelete({ _id: req.params.id });
         res.status(200).json(deletedServices);
     } catch (error) {
         res.status(500).json({error: error.message});

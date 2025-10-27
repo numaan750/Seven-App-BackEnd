@@ -70,11 +70,11 @@ app.get("/", (req, res) => {
   res.send("Backend server is running...");
 });
 
-// if (process.env.PORT!== "production") {
-//   const port = process.env.PORT|| 5000;
-//   app.listen(port, () => {
-//     console.log(`App running on port ${port}`);
-//   });
-// }
+if (process.env.PORT!== "production") {
+  const port = process.env.PORT|| 5000;
+  app.listen(port, () => {
+    console.log(`App running on port ${port}`);
+  });
+}
 
 module.exports = app;
